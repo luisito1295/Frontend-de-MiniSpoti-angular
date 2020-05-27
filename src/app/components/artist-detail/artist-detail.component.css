@@ -1,0 +1,25 @@
+.artist-head-card .img{
+  width: 130px;
+  height: 130px;
+  overflow: hidden;
+  float: left;
+  margin-right: 30px;
+}
+
+.artist-head-card .img img{
+  height: 150px;
+}
+
+.song-item{
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+  padding-top: 20px;
+}
+
+.song-item .title{
+  padding: 12px;
+}
+
+.song-item .buttons{
+  float: right;
+}

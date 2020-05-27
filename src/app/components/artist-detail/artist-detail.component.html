@@ -1,0 +1,44 @@
+<div *ngIf="artist" class="artist box">
+  <div class="artist-head-card">
+    <div class="img">
+      <img src="{{url + 'get-image-artist/' + artist.img}}" *ngIf="artist.img && artist.img != 'null'"  width="100%"/>
+    </div>
+  </div>
+  <div class="data">
+    <h1>{{artist.name}}</h1>
+    <p class="des">{{artist.des}}</p>
+
+    <a [routerLink]="['/crear-album', artist._id]" *ngIf="identity.role != 'ROLE_USER'" class="btn btn-default">
+      Añadir album
+    </a>
+  </div>
+
+  <div class="clearfix"></div>
+  <div class="gellery-albums" *ngIf="albums">
+    <ul class="albums-list">
+      <li *ngFor="let album of albums" class="col-lg-4 album-item">
+        <div class="picture">
+          <img src="{{url + 'get-image-album/' + album.img}}" *ngIf="album.img && album.img != 'null'"  width="100%"/>
+        </div>
+        <div class="title">
+          <p>
+            <a [routerLink]="['/album', album._id]">
+              {{album.title}}
+            </a>
+          </p>
+          <p>
+            <a [routerLink]="['/artista', album.artist._id]">
+              {{album.artist.name}}
+            </a>
+          </p>
+        </div>
+        <div class="buttons" *ngIf="identity.role != 'ROLE_USER'">
+          <a [routerLink]="['/editar-album', album._id]" class="btn btn-warning">Editar</a>
+          <a (click)="onDeleteAlbum(album._id)" class="btn btn-danger">Borrar</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+

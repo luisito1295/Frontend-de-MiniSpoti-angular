@@ -1,0 +1,40 @@
+<div class="col-lg-6">
+
+  <h1>{{titulo}}</h1>
+  <div *ngIf="alertMessage">
+    <div class="alert alert-info" >
+      {{alertMessage}}
+    </div>
+  </div>
+  <form #formArtist="ngForm" (ngSubmit)="onSubmit()">
+
+    <p>
+      <label>Nombre:</label>
+      <input type="text" #name="ngModel" name="name" [(ngModel)]="artist.name" required class="form-control">
+      <br>
+      <span class="alert alert-danger" *ngIf="!name.valid && name.touched">El nombre es obligatorio</span>
+    </p>
+
+    <p>
+      <label>Descripcion:</label>
+      <textarea type="text" #des="ngModel" name="des" [(ngModel)]="artist.des" required class="form-control"></textarea>
+      <br>
+      <span class="alert alert-danger" *ngIf="!des.valid && des.touched">La descripcion es obligatorio</span>
+    </p>
+
+    <div *ngIf="is_edit">
+      <div class="artist_img_for_edit" *ngIf="artist && artist.img != 'null'">
+        <img class="imagen" src="{{url + 'get-image-artist/' + artist.img}}" width="100px" />
+      </div>
+    </div>
+
+    <p>
+      <label>Sube tu foto:</label><br>
+      <input type="file" placeholder="Subir imagen..." (change)="fileChangeEvent($event)"/>
+    </p>
+
+    <input class="btn btn-success" type="submit" value="{{titulo}}" [disabled]="!formArtist.form.valid">
+
+  </form>
+</div>
+

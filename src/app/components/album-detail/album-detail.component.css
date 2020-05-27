@@ -1,0 +1,28 @@
+.songs-list{
+  margin: 0px;
+  padding: 0px;
+}
+
+.song-item{
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+  padding-top: 20px;
+}
+
+.song-item{
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+  padding-top: 20px;
+}
+
+.song-item .title{
+  padding: 12px;
+}
+
+.song-item .buttons{
+  float: right;
+}
+
+.song-item .btn-success{
+  margin-right: 10px;
+}

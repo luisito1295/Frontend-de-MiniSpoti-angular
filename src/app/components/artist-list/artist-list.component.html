@@ -1,0 +1,35 @@
+<div class="head-page">
+  <h1>{{titulo}}</h1>
+  <a [routerLink]="['/crear-artista']" *ngIf="identity && identity.role != 'RULE_USER'" class="btn btn-default">
+    Añadir
+  </a>
+
+  <ul class="paginacion pull-right">
+    <li><a [routerLink]="['/artistas', prev_page]">&laquo;</a></li>
+    <li><a [routerLink]="['/artistas', next_page]">&raquo;</a></li>
+  </ul>
+</div>
+
+<ul class="artist-list" *ngIf="identity">
+  <li *ngFor="let artist of artists" class="col-lg-3 artist-item">
+    <div class="artist-img">
+      <img class="imagen" src="{{url + 'get-image-artist/' + artist.img}}" width="100px" />
+    </div>
+    <div class="artist-name">
+      <a [routerLink]="['/artista', artist._id]">
+        {{artist.name}}
+        {{artist.des}}
+      </a>
+    </div>
+    <div class="buttons" *ngIf="identity.role != 'ROLE_USER'">
+      <a [routerLink]="['/editar-artista', artist._id]" class="btn btn-warning">Editar</a>
+      <a (click)="onDeleteArtist(artist._id)" class="btn btn-danger">Borrar</a>
+    </div>
+    <!--<div class="seguro" *ngIf="confirmado == artist._id">
+      <a (click)="onDeleteArtist(artist._id)" class="btn btn-danger">Borrar</a>
+      <a (click)="onCancelArtist()" class="btn btn-danger">Borrar</a>
+    </div>-->
+  </li>
+
+</ul>
+

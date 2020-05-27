@@ -1,0 +1,41 @@
+<div class="album-box" *ngIf="album">
+  <div id="album-head-card">
+    <!--<div class="image" *ngIf="album.img">
+      <img src="{{ url + 'get-image-album/' + album.img }}" style="width: 100px;"/>
+    </div>-->
+
+    <div class="image" *ngIf="!album.img">
+      <img src="assets/img/album.png" style="width: 100px;"/>
+    </div>
+    <div class="container data">
+      <h1>{{ album.title }}</h1>
+      <!--<p>{{ album.artist.name }}</p>-->
+      <p>{{ album.year }}</p>
+      <p>{{ album.des }}</p>
+    </div>
+    <a [routerLink]="['/crear-tema', album._id]" class="btn btn-default" *ngIf="identity.role == 'ROLE_ADMIN'">
+      Añadir cancion
+    </a>
+  </div>
+  <div class="clearfix">
+    <div class="gallery-songs" *ngIf="songs">
+      <ul class="songs-list">
+        <li *ngFor="let song of songs">
+          <div class="title">
+            <a class="btn btn-success" (click)="startPlayer(song)">
+              <i class="far fa-play-circle"></i>
+            </a>
+            {{ song.number + '. ' + song.name + ' - ' + song.duration }}
+
+            <div class="buttons" *ngIf="identity && identity.role != 'ROLE_USER'">
+              <a [routerLink]="['/editar-tema', song._id]" class="btn btn-warning">Editar</a>
+              <a (click)="onDeleteSong(song._id)" class="btn btn-danger">Borrar</a>
+            </div>
+
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
